@@ -3,11 +3,12 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  ignorePatterns: ['dist/*', 'node_modules/*'],
   extends: [
     'plugin:react/recommended',
     'airbnb',
     'airbnb/hooks',
-    'airbnb/whitespace'
+    'airbnb/whitespace',
   ],
   parserOptions: {
     ecmaFeatures: {
