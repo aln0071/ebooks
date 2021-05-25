@@ -51,7 +51,7 @@
     "react-dom": "^17.0.2"
   },
   "lint-staged": {
-    "*.{js,css,md}": "npm run prettier",
+    "*.{js,css,md,json}": "npm run prettier",
     "*.{js,jsx}": "npm run lint:fix"
   }
 }
