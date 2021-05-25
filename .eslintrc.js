@@ -21,5 +21,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    semi: ['error', 'always'],
+    'no-console': 'error',
   },
 };
