@@ -55,7 +55,7 @@
     "react-dom": "^17.0.2"
   },
   "lint-staged": {
-    "*": "prettier --write",
+    "*.{js,jsx,scss,css,json,md,babelrc,html}": "prettier --write",
     "*.{js,jsx}": "eslint --fix"
   }
 }
