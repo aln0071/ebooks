@@ -30,8 +30,8 @@ module.exports = {
             options: {
               modules: {
                 localIdentName: 'ebook-[local]',
+                exportLocalsConvention: 'camelCase',
               },
-              localsConvention: 'camelCase',
             },
           },
           { loader: 'sass-loader' },
