@@ -4,9 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const dotenv = require('dotenv');
 
-const {
-  NODE_ENV, BASE_URL, PORT, CSS_PREFIX,
-} = dotenv.config().parsed;
+const { BASE_URL, PORT, CSS_PREFIX } = dotenv.config().parsed;
+
+const { NODE_ENV } = process.env;
 
 module.exports = {
   entry: './src/index.jsx',
