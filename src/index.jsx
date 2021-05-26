@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import store from './store';
-import 'react-rte/lib/demo';
 
 ReactDOM.render(
   <Provider store={store}>
