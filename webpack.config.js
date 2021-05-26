@@ -1,10 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const dotenv = require('dotenv');
+
+const {
+  NODE_ENV, BASE_URL, PORT, CSS_PREFIX,
+} = dotenv.config().parsed;
 
 module.exports = {
   entry: './src/index.jsx',
-  mode: 'development',
+  mode: NODE_ENV,
   module: {
     rules: [
       {
@@ -30,7 +36,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: 'ebook-[local]',
+                localIdentName: `${CSS_PREFIX}[local]`,
                 exportLocalsConvention: 'camelCase',
               },
             },
@@ -49,14 +55,16 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     contentBase: path.join(__dirname, 'public/'),
-    port: 3000,
-    publicPath: 'http://localhost:3000/',
+    port: PORT,
+    publicPath: BASE_URL,
     hot: true,
+    open: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
     }),
+    new Dotenv(),
   ],
 };
