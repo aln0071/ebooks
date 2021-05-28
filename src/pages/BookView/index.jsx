@@ -7,7 +7,9 @@ import AddIcon from '@material-ui/icons/Add';
 import { useDispatch } from 'react-redux';
 import MyTab from '../../components/Tabs/Tab';
 import TabBody from '../../components/Tabs/TabBody';
-import { setCurrentView } from '../../store/actions';
+import { resetPageData, setCurrentView } from '../../store/actions';
+import { getAllData } from '../../utils';
+import Page from '../../components/Page/Page';
 
 function a11yProps(index) {
   return {
@@ -39,20 +41,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function VerticalTabs() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [currentTab, setCurrentTab] = React.useState(0);
+  const [allPages, setAllPages] = React.useState(getAllData());
   const dispatch = useDispatch();
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <div className={classes.root}>
       <Tabs
         orientation="vertical"
         variant="scrollable"
-        value={value}
-        onChange={handleChange}
+        value={currentTab}
+        onChange={(event, newTabId) => setCurrentTab(newTabId)}
         className={classes.tabs}
         TabIndicatorProps={{
           style: {
@@ -60,58 +59,30 @@ export default function VerticalTabs() {
           },
         }}
       >
-        <MyTab label="Item One" {...a11yProps(0)} />
-        <Tab label="Item Two" {...a11yProps(1)} />
-        <Tab label="Item Three" {...a11yProps(2)} />
-        <Tab label="Item Four" {...a11yProps(3)} />
-        <Tab label="Item Five" {...a11yProps(4)} />
-        <Tab label="Item Six" {...a11yProps(5)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
+        {allPages.map((page, index) => (
+          <MyTab
+            key={`tab-${index}`}
+            label={page.title}
+            {...a11yProps(index)}
+          />
+        ))}
       </Tabs>
-      <TabBody className={classes.tab} value={value} index={0}>
-        Item One
-      </TabBody>
-      <TabBody className={classes.tab} value={value} index={1}>
-        Item Two
-      </TabBody>
-      <TabBody className={classes.tab} value={value} index={2}>
-        Item Three
-      </TabBody>
-      <TabBody className={classes.tab} value={value} index={3}>
-        Item Four
-      </TabBody>
-      <TabBody className={classes.tab} value={value} index={4}>
-        Item Five
-      </TabBody>
-      <TabBody className={classes.tab} value={value} index={5}>
-        Item Six
-      </TabBody>
-      <TabBody className={classes.tab} value={value} index={6}>
-        Item Seven
-      </TabBody>
+      {allPages.map((page, index) => (
+        <TabBody
+          key={`body-${index}`}
+          className={classes.tab}
+          value={currentTab}
+          index={index}
+        >
+          <Page {...page} />
+        </TabBody>
+      ))}
       <div className={classes.addpage}>
         <Button
-          onClick={(_) => dispatch(setCurrentView('editorView'))}
+          onClick={(_) => {
+            dispatch(setCurrentView('editorView'));
+            dispatch(resetPageData());
+          }}
           variant="contained"
           endIcon={<AddIcon />}
         >

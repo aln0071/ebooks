@@ -1,10 +1,10 @@
-export const savePage = ({ title, data, id }) => {
+export const savePage = ({ title, html, id }) => {
   const allData = getAllData();
   const index = allData.findIndex((ob) => ob.id === id);
   const newData = {
     id,
     title,
-    data,
+    html,
   };
   if (index === -1) {
     allData.push(newData);

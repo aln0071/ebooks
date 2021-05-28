@@ -17,7 +17,7 @@ export default function TabBody(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box p={3} width={1}>
           <Typography>{children}</Typography>
         </Box>
       )}

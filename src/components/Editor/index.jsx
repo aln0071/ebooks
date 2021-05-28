@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import RichTextEditor, {
   getTextAlignClassName,
 } from 'react-rte/lib/RichTextEditor';
-import { setPageData } from '../../store/actions';
+import { setPageData, setPageHtml } from '../../store/actions';
 
 const rteToolbarConfig = {
   display: [
@@ -41,6 +41,7 @@ function Editor() {
   const dispatch = useDispatch();
   const setTextValue = (newData) => {
     dispatch(setPageData(newData));
+    dispatch(setPageHtml(newData.toString('html')));
   };
   return (
     <div>

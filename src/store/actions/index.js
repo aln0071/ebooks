@@ -4,6 +4,8 @@ import {
   SET_PAGE_DATA,
   SET_PAGE_ID,
   SET_PAGE_TITLE,
+  SET_PAGE_HTML,
+  RESET_PAGE_DATA,
 } from './types';
 
 export const setCurrentView = (view) => ({
@@ -29,4 +31,13 @@ export const setPageTitle = (title) => ({
 export const setPageId = (id) => ({
   type: SET_PAGE_ID,
   payload: id,
+});
+
+export const setPageHtml = (html) => ({
+  type: SET_PAGE_HTML,
+  payload: html,
+});
+
+export const resetPageData = () => ({
+  type: RESET_PAGE_DATA,
 });
