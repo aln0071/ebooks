@@ -1,3 +1,8 @@
 import { combineReducers } from 'redux';
+import view from './view';
+import page from './page';
 
-export default combineReducers({});
+export default combineReducers({
+  view,
+  page,
+});
