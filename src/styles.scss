@@ -8,6 +8,23 @@ body {
   font-size: 19px;
 }
 
+.editor {
+  &__container {
+    height: calc(100vh - 70px);
+    overflow: scroll;
+  }
+
+  &__buttonsContainer {
+    text-align: right;
+    padding-top: 10px;
+  }
+
+  &__title {
+    margin: 0px;
+    margin-top: 3px;
+  }
+}
+
 .footer {
   width: 100%;
   height: 70px;

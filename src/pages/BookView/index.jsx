@@ -4,8 +4,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+import { useDispatch } from 'react-redux';
 import MyTab from '../../components/Tabs/Tab';
 import TabBody from '../../components/Tabs/TabBody';
+import { setCurrentView } from '../../store/actions';
 
 function a11yProps(index) {
   return {
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     display: 'flex',
-    minHeight: '100vh',
+    height: '100vh',
     overflow: 'auto',
     paddingBottom: '70px',
     marginBottom: '-70px',
@@ -38,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 export default function VerticalTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const dispatch = useDispatch();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -50,7 +53,6 @@ export default function VerticalTabs() {
         variant="scrollable"
         value={value}
         onChange={handleChange}
-        aria-label="Vertical tabs example"
         className={classes.tabs}
         TabIndicatorProps={{
           style: {
@@ -64,6 +66,26 @@ export default function VerticalTabs() {
         <Tab label="Item Four" {...a11yProps(3)} />
         <Tab label="Item Five" {...a11yProps(4)} />
         <Tab label="Item Six" {...a11yProps(5)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />
         <Tab label="Item Seven" {...a11yProps(6)} />
       </Tabs>
       <TabBody className={classes.tab} value={value} index={0}>
@@ -88,7 +110,11 @@ export default function VerticalTabs() {
         Item Seven
       </TabBody>
       <div className={classes.addpage}>
-        <Button variant="contained" endIcon={<AddIcon />}>
+        <Button
+          onClick={(_) => dispatch(setCurrentView('editorView'))}
+          variant="contained"
+          endIcon={<AddIcon />}
+        >
           Add New Page
         </Button>
       </div>
