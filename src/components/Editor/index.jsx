@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import RichTextEditor, {
-  createEmptyValue,
   getTextAlignClassName,
 } from 'react-rte/lib/RichTextEditor';
+import { setPageData } from '../../store/actions';
 
 const rteToolbarConfig = {
   display: [
@@ -36,7 +37,11 @@ const rteToolbarConfig = {
 };
 
 function Editor() {
-  const [textValue, setTextValue] = useState(createEmptyValue());
+  const textValue = useSelector((state) => state.page.data);
+  const dispatch = useDispatch();
+  const setTextValue = (newData) => {
+    dispatch(setPageData(newData));
+  };
   return (
     <div>
       <RichTextEditor
